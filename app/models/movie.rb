@@ -10,6 +10,8 @@ class Movie < ActiveRecord::Base
   validates :release_date, presence: true
   validate :release_date_is_in_the_past
 
+  mount_uploader :poster, PosterUploader
+
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size
   end
