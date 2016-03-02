@@ -1,7 +1,11 @@
 RottenMangoes::Application.routes.draw do
   
+  get "reviews/new"
+  get "reviews/create"
+  resources :movies do
+    resources :reviews, only: [:new, :create]
+  end
   resources :users, only: [:new, :create]
-  resources :movies
   resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
