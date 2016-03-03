@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PosterUploader < CarrierWave::Uploader::Base
-
+  after :store, :delete_old_tmp_file
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -14,6 +14,15 @@ class PosterUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def cache!(new_file)
+    super
+    @old_tmp_file = new_file
+  end
+
+  def delete_old_tmp_file(dummy)
+    @old_tmp_file.try :delete
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -32,6 +32,12 @@
   <div>
     <%= f.label :poster %><br>
     <%= f.file_field :poster %>
+    <% if f.object.poster? %>
+      <br>
+      <%= image_tag f.object.poster.thumb.url %><br>
+      <%= f.label :remove_poster %>
+      <%= f.check_box :remove_poster %>
+    <% end %>
   </div>
   <div>
     <%= f.label :description %><br>
