@@ -1,11 +1,11 @@
 <h1>User List</h1>
 
+<%= paginate @users %>
 <table>
   <tr>
     <th>email</th>
     <th>firstname</th>
     <th>lastname</th>
-    <th>password</th>
     <th>created_at</th>
     <th>admin</th>
   </tr>
@@ -14,7 +14,6 @@
       <td><%= user.email %></td>
       <td><%= user.firstname %></td>
       <td><%= user.lastname %></td>
-      <td><%= user.password_digest %></td>
       <td><%= user.created_at %></td>
       <td><%= user.admin %></td>
     </tr>
