@@ -40,6 +40,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'faker'
 gem 'pry'
+gem 'bootstrap-sass'
 # Use unicorn as the app server
 # gem 'unicorn'
 
