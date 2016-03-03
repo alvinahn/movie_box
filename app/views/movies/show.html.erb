@@ -2,7 +2,7 @@
 
 
 <% if @movie.poster? %>
-  <%= link_to image_tag(@movie.poster_url(:thumb)), movie_path(@movie) %>
+  <%= link_to image_tag(@movie.poster_url(:small)), movie_path(@movie) %>
 <% else %>
   <%= link_to image_tag(@movie.poster_image_url), movie_path(@movie) %>
 <% end %>

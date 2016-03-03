@@ -34,7 +34,7 @@
     <%= f.file_field :poster %>
     <% if f.object.poster? %>
       <br>
-      <%= image_tag f.object.poster.thumb.url %><br>
+      <%= image_tag f.object.poster_url(:thumb) %><br>
       <%= f.label :remove_poster %>
       <%= f.check_box :remove_poster %>
     <% end %>
