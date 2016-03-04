@@ -3,19 +3,19 @@ class MoviesController < ApplicationController
     if params[:runtime_in_minutes] && (params[:runtime_in_minutes].empty? == false)
       if params[:runtime_in_minutes] == "1"
         q = 90
-        @movies = Movie.where("runtime_in_minutes < ?", q)
+        @movies = Movie.runtime_less_than(q)
       elsif params[:runtime_in_minutes] == "2"
         q1 = 90
         q2 = 120
-        @movies = Movie.where("runtime_in_minutes >= ? and runtime_in_minutes <= ?", q1, q2)
+        @movies = Movie.runtime_between(q1,q2)
       else
         q = 120
-        @movies = Movie.where("runtime_in_minutes > ?", q)
+        @movies = Movie.runtime_more_than(q)
       end
     elsif params[:title] || params[:director]
       params[:title].empty? ? q1 = nil : q1 = "%#{params[:title]}%"
       params[:director].empty? ? q2 = nil : q2 = "%#{params[:director]}%"
-      @movies = Movie.where("title like ? or director like ?", q1, q2)
+      @movies = Movie.title_director_like(q1, q2)
     else      
       @movies = Movie.all
     end

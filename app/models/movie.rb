@@ -12,6 +12,11 @@ class Movie < ActiveRecord::Base
 
   mount_uploader :poster, PosterUploader
 
+  scope :runtime_less_than, ->(time) { where("runtime_in_minutes < ?", time)}
+  scope :runtime_between, ->(time1, time2) { where("runtime_in_minutes >= ? and runtime_in_minutes <= ?", time1, time2)}
+  scope :runtime_more_than, ->(time) { where("runtime_in_minutes > ?", time)}
+  scope :title_director_like, ->(title, director) { where("title like ? or director like ?", title, director)}
+
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size
   end
