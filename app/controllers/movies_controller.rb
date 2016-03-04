@@ -12,10 +12,9 @@ class MoviesController < ApplicationController
         q = 120
         @movies = Movie.runtime_more_than(q)
       end
-    elsif params[:title] || params[:director]
-      params[:title].empty? ? q1 = nil : q1 = "%#{params[:title]}%"
-      params[:director].empty? ? q2 = nil : q2 = "%#{params[:director]}%"
-      @movies = Movie.title_director_like(q1, q2)
+    elsif params[:search]
+      params[:search].empty? ? q = nil : q = "%#{params[:search]}%"
+      @movies = Movie.search(q)
     else      
       @movies = Movie.all
     end

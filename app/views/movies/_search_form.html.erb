@@ -1,11 +1,7 @@
 <%= form_tag({controller: "movies", action: "index"}, method: "get") do %>
   <div>
-    <%= label_tag(:title, "Title:") %>
-    <%= text_field_tag(:title) %>
-  </div>
-  <div>
-    <%= label_tag(:director, "Director:") %>
-    <%= text_field_tag(:director) %>
+    <%= label_tag(:search, "Search:") %>
+    <%= text_field_tag(:search) %>
   </div>
   <div>
     <%= select_tag(:runtime_in_minutes, options_for_select(
