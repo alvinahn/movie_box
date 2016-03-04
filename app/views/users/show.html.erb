@@ -1,0 +1,9 @@
+
+<h1>User Name: <%= @user.full_name %></h1>
+
+<p>Email: <%= @user.email %></p><hr>
+<% @user.reviews.each do |review| %>
+  <p>Movie title: <%= link_to Movie.find(review.movie_id).title, movie_path(review.movie_id) %></p>
+  <p>Review: <%= review.text %></p>
+  <p>Rating: <%= review.rating_out_of_ten %></p><br>
+<% end %>

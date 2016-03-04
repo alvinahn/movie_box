@@ -4,18 +4,4 @@
 
 <hr>
 <%= render "search_form" %><br>
-<% @movies.each do |movie| %>
-  <% if movie.poster? %>
-    <%= link_to image_tag(movie.poster_url(:thumb)), movie_path(movie) %>
-  <% else %>
-    <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
-  <% end %>
-  <h2>Title: <%= link_to movie.title, movie_path(movie) %></h2>
-  <% if movie.reviews.any? %>
-    <h3>Average Review: <%= movie.review_average %>/10</h3>
-  <% end %>
-  <h3>Release Date: <%= formatted_date(movie.release_date) %></h3>
-  <h4>Director: <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-  <h4>Description: <%= movie.description %></h4>
-  <hr>
-<% end %>
+<%= render "movie" %>
