@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="/">MovieBox</a>
+      <!-- <a class="navbar-brand" href="#"><%= image_tag "create_thumb.png" %></a> -->
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <%= form_tag({controller: "/movies", action: "index"}, method: "get", class: "navbar-form") do %>
+          <div class="form-group">
+            <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default" 
+                      id="navbar_search"><i class="fa fa-search"></i></button>
+            <%= button_tag '<i class="fa fa-times"></i>'.html_safe, type: :reset, class: "btn btn-default", id: "navbar_search" %>
+          </div>
+        <% end %>
+        <li><a href=<%= movies_path %>><i class="fa fa-home"> Home</i></a></li>
+        <li><a href=<%= new_movie_path %>><i class="fa fa-film"> Submit a Movie</i></a></li>
+        <li class="dropdown active">
+        <% if current_user %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-reddit-alien"></i> <%= current_user.firstname.capitalize %><span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">View Profile</a></li>
+            <li><a href="#">Sign Out</a></li>
+            <li class="divider"></li>
+            <% if current_user && admin %>
+              <li><%= link_to "Admin User Management", admin_users_path %></li>
+            <% end %>
+            <li><%= link_to "Sign Out", session_path("current"), method: :delete %></li>
+          </ul>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
