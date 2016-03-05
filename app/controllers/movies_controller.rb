@@ -1,21 +1,21 @@
 class MoviesController < ApplicationController
   def index
-    if params[:runtime_in_minutes] && (params[:runtime_in_minutes].empty? == false)
+    if params[:search]
+      params[:search].empty? ? @movies = Movie.all : @movies = Movie.search("%#{params[:search]}%")
       if params[:runtime_in_minutes] == "1"
         q = 90
-        @movies = Movie.runtime_less_than(q)
+        @movies = @movies.runtime_less_than(q)
       elsif params[:runtime_in_minutes] == "2"
         q1 = 90
         q2 = 120
-        @movies = Movie.runtime_between(q1,q2)
-      else
+        @movies = @movies.runtime_between(q1,q2)
+      elsif params[:runtime_in_minutes] == "3"
         q = 120
-        @movies = Movie.runtime_more_than(q)
+        @movies = @movies.runtime_more_than(q)
+      else
+        @movies
       end
-    elsif params[:search]
-      params[:search].empty? ? q = nil : q = "%#{params[:search]}%"
-      @movies = Movie.search(q)
-    else      
+    else
       @movies = Movie.all
     end
   end
