@@ -1,9 +1,11 @@
 <h3 class="movie-topics">New Releases</h3>
 <div class="movie-slider-auto">
   <% @new_release_movies = Movie.where("release_date >= ?", (Time.now.ago(1.year))) %>
+  <% i=0 %>
   <% @new_release_movies.each do |movie| %>
+    <% i+=1 %>
     <div>
-      <a href="/movies/moviemodal" data-toggle="modal" data-target="#movie-modal"><%= image_tag(movie.poster_image_url) %></a>
+      <a href="/movies/moviemodal" data-toggle="modal" data-target="#movie-modal<%= i %>"><%= image_tag(movie.poster_image_url) %></a>
       <p id="movie-title"><%= link_to truncate(movie.title, length: 20), movie_path(movie) %></p>
       <div class="movie-year">
         <%= year(movie.release_date) %>
@@ -14,9 +16,11 @@
     </div>
   <% end %>
 </div>
-
+"%#{params[:search]}%"
+<% i=0 %>
 <% @new_release_movies.each do |movie| %>
-  <div class="modal fade" id="movie-modal">
+  <% i+=1 %>
+  <div class="modal fade" id="movie-modal<%= i %>">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
