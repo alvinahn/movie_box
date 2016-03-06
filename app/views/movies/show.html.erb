@@ -1,6 +1,3 @@
-<%= link_to "Back to all movies", movies_path %><br/>
-
-
 <% if @movie.poster? %>
   <%= link_to image_tag(@movie.poster_url(:small)), movie_path(@movie) %>
 <% else %>

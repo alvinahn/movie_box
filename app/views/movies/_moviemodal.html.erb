@@ -1,20 +1,4 @@
-<h3 class="movie-topics">New Releases</h3>
-<div class="movie-slider-auto">
-  <% @new_release_movies = Movie.where("release_date >= ?", (Time.now.ago(1.year))) %>
-  <% @new_release_movies.each do |movie| %>
-    <div>
-      <a href="/movies/moviemodal" data-toggle="modal" data-target="#movie-modal"><%= image_tag(movie.poster_image_url) %></a>
-      <p id="movie-title"><%= link_to truncate(movie.title, length: 20), movie_path(movie) %></p>
-      <div class="movie-year">
-        <%= year(movie.release_date) %>
-      </div> 
-      <div class="movie-duration">
-        <%= min_to_hr(movie.runtime_in_minutes) %>
-      </div>
-    </div>
-  <% end %>
-</div>
-
+<% @new_release_movies = Movie.where("release_date >= ?", (Time.now.ago(1.year))) %>
 <% @new_release_movies.each do |movie| %>
   <div class="modal fade" id="movie-modal">
     <div class="modal-dialog">
@@ -55,38 +39,3 @@
     </div>
   </div>
 <% end %>
-
-<h4 class="movie-topics">Sort By</h4>
-<%= form_tag({controller: "movies", action: "index" }, method: "get", class: "sort-by-form") do %>
-  <div class="sort-by-selection">
-    <%= select_tag(:sort_by, options_for_select(
-      [
-        ['Please select', ""],
-        ['Title', "title"],
-        ['Duration', "duration"],
-        ['Director', "director"],
-        ['Newest', "newest"]
-        ], 0
-    ), class: "selection-style") %>
-  </div>
-  <div class="sort-by-search">
-    <%= button_tag '<i class="fa fa-search"></i>'.html_safe, class: "search-button" %>
-  </div>
-<% end %>
-<div class="movie-slider">
-  <% @movies.each do |movie| %>
-    <div>
-      <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
-      <p id="movie-title"><%= link_to truncate(movie.title, length: 20), movie_path(movie) %></p>
-      <div class="movie-year">
-        <%= year(movie.release_date) %>
-      </div> 
-      <div class="movie-duration">
-        <%= min_to_hr(movie.runtime_in_minutes) %>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-
-<%= render "users/usermodal" %>

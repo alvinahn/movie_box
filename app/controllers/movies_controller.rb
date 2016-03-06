@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    if params[:search]
+    if params[:search] && params[:runtime_in_minutes]
       params[:search].empty? ? @movies = Movie.all : @movies = Movie.search("%#{params[:search]}%")
       if params[:runtime_in_minutes] == "1"
         q = 90
@@ -14,6 +14,16 @@ class MoviesController < ApplicationController
         @movies = @movies.runtime_more_than(q)
       else
         @movies
+      end
+    elsif params[:sort_by]
+      if params[:sort_by] == "title"
+        @movies = Movie.order(title: :asc)
+      elsif params[:sort_by] == "duration"
+        @movies = Movie.order(runtime_in_minutes: :asc)
+      elsif params[:sort_by] == "director"
+        @movies = Movie.order(director: :asc)
+      elsif params[:sort_by] == "newest"
+        @movies = Movie.order(release_date: :desc)
       end
     else
       @movies = Movie.all

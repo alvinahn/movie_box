@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="/">MovieBox</a>
+        <a class="navbar-brand" href="/movies">MovieBox</a>
       <!-- <a class="navbar-brand" href="#"><%= image_tag "create_thumb.png" %></a> -->
     </div>
 
@@ -29,8 +29,8 @@
         <% if current_user %>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-reddit-alien"></i> <%= current_user.firstname.capitalize %><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">View Profile</a></li>
-            <li><a href="#">Sign Out</a></li>
+            <li><a type="button" data-toggle="modal" data-target="#user-modal">View Profile</a></li>
+            <li><a href="#">Preferences</a></li>
             <li class="divider"></li>
             <% if current_user && admin %>
               <li><%= link_to "Admin User Management", admin_users_path %></li>

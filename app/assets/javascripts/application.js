@@ -15,3 +15,70 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+  $('.movie-slider').slick({
+    centerHeight: '100px',
+    centerPadding: '20px',
+    arrows: true,
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    speed: 400,
+    responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+  });
+});
+
+
+$(document).ready(function(){
+  $('.movie-slider-auto').slick({
+    centerHeight: '100px',
+    centerPadding: '20px',
+    arrows: true,
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    speed: 400,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+  });
+});
