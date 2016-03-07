@@ -109,3 +109,62 @@ $gray: #797474;
   background-color: #272B30;
   border: none;
 }
+
+.fa-sort-desc {
+  color: #4171CE;
+  margin-left: -6px;
+}
+
+.modal-image {
+  height: 300px;
+}
+
+.modal-title {
+  font-family: copperplate;
+}
+
+.movie-modal-size {
+  width: 500px;
+}
+
+.movie-review {
+  font-size: 13px;
+}
+
+/*rating star*/
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+
+.rating-star {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('star.png') 0 -16px;
+}
+
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('star.png') 0 -16px;
+}

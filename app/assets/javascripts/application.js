@@ -27,21 +27,21 @@ $(document).ready(function(){
     speed: 400,
     responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 1200,
       settings: {
         arrows: false,
         centerMode: true,
         centerPadding: '40px',
-        slidesToShow: 3
+        slidesToShow: 5
       }
     },
     {
-      breakpoint: 480,
+      breakpoint: 1000,
       settings: {
         arrows: false,
         centerMode: true,
         centerPadding: '40px',
-        slidesToShow: 1
+        slidesToShow: 3 
       }
     }
   ]
@@ -62,21 +62,21 @@ $(document).ready(function(){
     autoplaySpeed: 2000,
     responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 1200,
       settings: {
         arrows: false,
         centerMode: true,
         centerPadding: '40px',
-        slidesToShow: 3
+        slidesToShow: 5
       }
     },
     {
-      breakpoint: 480,
+      breakpoint: 1000,
       settings: {
         arrows: false,
         centerMode: true,
         centerPadding: '40px',
-        slidesToShow: 1
+        slidesToShow: 3 
       }
     }
   ]
