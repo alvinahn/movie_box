@@ -20,8 +20,10 @@ test:
 
 production:
   adapter: postgresql
-  database: d7pssll3ijt095
+  database: df2ev5lrqq73n9
+  port: 5432
   pool: 5
   timeout: 5000
-  username: gektupfsjkomjw
-  password: UxgIbY5okwoCSHqmLTo3gElsu
+  username: ogqrwxcflguvod
+  password: 3Klv9yeorT1ZadL9QU6RJ7mCuu
+  host: localhost
