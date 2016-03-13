@@ -5,8 +5,8 @@
   <% @new_release_movies.each do |movie| %>
     <% i+=1 %>
     <div>
-      <a href="/movies/moviemodal" data-toggle="modal" data-target="#latest-movie-modal<%= i %>"><%= image_tag(movie.poster_image_url) %></a>
-      <p id="movie-title"><%= link_to truncate(movie.title, length: 20), movie_path(movie) %></p>
+      <a data-toggle="modal" data-target="#latest-movie-modal<%= i %>"><%= image_tag(movie.poster_image_url) %>
+      <p id="movie-title"><%= truncate(movie.title, length: 20) %></p></a>
       <div class="movie-year">
         <%= year(movie.release_date) %>
       </div> 
@@ -32,7 +32,11 @@
           <%= link_to image_tag(movie.poster_image_url, :class => "modal-image"), movie_path(movie) %>
           </div>
           <div>
-          <h4 class="modal_movie_title"><%= movie.title %> <small>(<%= formatted_date(movie.release_date) %>) <%= link_to "Edit", edit_movie_path(movie) %> <%= link_to "Delete", movie_path(movie), method: :delete, confirm: "You sure?" %> </small></h4>
+          <h4 class="modal_movie_title"><%= movie.title %> <small>(<%= formatted_date(movie.release_date) %>)
+          <% if current_user %>
+            <%= link_to "Edit", edit_movie_path(movie) %> <%= link_to "Delete", movie_path(movie), method: :delete, confirm: "You sure?" %> 
+          <% end %>
+          </small></h4>
           <p>Director: <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</p>
           <p><%= movie.description %></p>
           </div>
@@ -42,7 +46,7 @@
           <h4>Reviews</h4>
           <% if movie.reviews.any? %>
             <p>Review Average: <%= movie.review_average %>/10</p>
-            <span class="rating">
+<!--             <span class="rating">
                 <input type="radio" class="rating-input"
                     id="rating-input-1-5" name="rating-input-1">
                 <label for="rating-input-1-5" class="rating-star"></label>
@@ -58,24 +62,36 @@
                 <input type="radio" class="rating-input"
                     id="rating-input-1-1" name="rating-input-1">
                 <label for="rating-input-1-1" class="rating-star"></label>
-            </span>
+            </span> -->
           <% end %>
           <% if current_user %>
             <% movie.reviews.each do |review| %>
               <blockquote class="movie-review">
                 <p><%= review.text %></p>
                 <p>Rating: <%= review.rating_out_of_ten %>/10</p>
-                <small>- <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
+                <small> <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
               </blockquote>
             <% end %>
             <p><%= link_to "Write a review!", new_movie_review_path(movie) %></p>
           <% else %>
-            <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
+            <% movie.reviews.each do |review| %>
+              <blockquote class="movie-review">
+                <p><%= review.text %></p>
+                <p>Rating: <%= review.rating_out_of_ten %>/10</p>
+                <small> <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
+              </blockquote>
+            <% end %>
+            <form>
+                <p>Please <%= link_to "log in", new_session_path %> to add your own reviews.</p>
+                <textarea disabled rows="2" cols="76" name="content"></textarea>
+            </form>
           <% end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <% if current_user %>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          <% end %>
         </div>
       </div>
     </div>
@@ -105,8 +121,8 @@
   <% @movies.each do |movie| %>
   <% i+=1 %>
     <div>
-      <a href="/movies/moviemodal" data-toggle="modal" data-target="#movie-modal<%= i %>"><%= image_tag(movie.poster_image_url) %></a>
-      <p id="movie-title"><%= link_to truncate(movie.title, length: 20), movie_path(movie) %></p>
+      <a data-toggle="modal" data-target="#movie-modal<%= i %>"><%= image_tag(movie.poster_image_url) %>
+      <p id="movie-title"><%= truncate(movie.title, length: 20) %></p></a>
       <div class="movie-year">
         <%= year(movie.release_date) %>
       </div> 
@@ -132,7 +148,11 @@
           <%= link_to image_tag(movie.poster_image_url, :class => "modal-image"), movie_path(movie) %>
           </div>
           <div>
-          <h4 class="modal_movie_title"><%= movie.title %> <small>(<%= formatted_date(movie.release_date) %>) <%= link_to "Edit", edit_movie_path(movie) %> <%= link_to "Delete", movie_path(movie), method: :delete, confirm: "You sure?" %> </small></h4>
+          <h4 class="modal_movie_title"><%= movie.title %> <small>(<%= formatted_date(movie.release_date) %>)
+          <% if current_user %>
+            <%= link_to "Edit", edit_movie_path(movie) %> <%= link_to "Delete", movie_path(movie), method: :delete, confirm: "You sure?" %> 
+          <% end %>
+          </small></h4>
           <p>Director: <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</p>
           <p><%= movie.description %></p>
           </div>
@@ -142,7 +162,7 @@
           <h4>Reviews</h4>
           <% if movie.reviews.any? %>
             <p>Review Average: <%= movie.review_average %>/10</p>
-            <span class="rating">
+<!--             <span class="rating">
                 <input type="radio" class="rating-input"
                     id="rating-input-1-5" name="rating-input-1">
                 <label for="rating-input-1-5" class="rating-star"></label>
@@ -158,24 +178,36 @@
                 <input type="radio" class="rating-input"
                     id="rating-input-1-1" name="rating-input-1">
                 <label for="rating-input-1-1" class="rating-star"></label>
-            </span>
+            </span> -->
           <% end %>
           <% if current_user %>
             <% movie.reviews.each do |review| %>
               <blockquote class="movie-review">
                 <p><%= review.text %></p>
                 <p>Rating: <%= review.rating_out_of_ten %>/10</p>
-                <small>- <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
+                <small> <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
               </blockquote>
             <% end %>
             <p><%= link_to "Write a review!", new_movie_review_path(movie) %></p>
           <% else %>
-            <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
+            <% movie.reviews.each do |review| %>
+              <blockquote class="movie-review">
+                <p><%= review.text %></p>
+                <p>Rating: <%= review.rating_out_of_ten %>/10</p>
+                <small> <%= link_to review.user.full_name.titleize, user_path(review.user_id) %></small><br/>
+              </blockquote>
+            <% end %>
+            <form>
+                <p>Please <%= link_to "log in", new_session_path %> to add your own reviews.</p>
+                <textarea disabled rows="2" cols="76" name="content"></textarea>
+            </form>
           <% end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <% if current_user %>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          <% end %>
         </div>
       </div>
     </div>

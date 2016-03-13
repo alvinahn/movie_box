@@ -3,7 +3,8 @@
 <head>
   <title>RottenMangoes</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+
   <%= csrf_meta_tags %>
   <!-- Slick -->
   <link href="http://kenwheeler.github.io/slick/slick/slick.css" rel="stylesheet"/>
@@ -14,6 +15,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 </head>
 <body>
+
   <%= render 'layouts/navbar' %>
   <div class="container">
     <% flash.each do |key,value| %>
@@ -22,5 +24,6 @@
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
+
 </body>
 </html>

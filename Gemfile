@@ -41,6 +41,8 @@ gem 'kaminari'
 gem 'faker'
 gem 'pry'
 gem 'bootstrap-sass'
+
+gem 'rails_12factor', group: :production
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -49,3 +51,4 @@ gem 'bootstrap-sass'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+

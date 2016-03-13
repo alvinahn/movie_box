@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="/movies">MovieBox</a>
+        <a class="navbar-brand">MovieBox</a>
       <!-- <a class="navbar-brand" href="#"><%= image_tag "create_thumb.png" %></a> -->
     </div>
 
@@ -23,7 +23,7 @@
             <%= button_tag '<i class="fa fa-times"></i>'.html_safe, type: :reset, class: "btn btn-default", id: "navbar_search" %>
           </div>
         <% end %>
-        <li><a href=<%= movies_path %>><i class="fa fa-home"> Home</i></a></li>
+        <li class="home-button"><a ><i class="fa fa-home"> Home</i></a></li>
         <li><a href=<%= new_movie_path %>><i class="fa fa-film"> Submit a Movie</i></a></li>
         <li class="dropdown active">
         <% if current_user %>

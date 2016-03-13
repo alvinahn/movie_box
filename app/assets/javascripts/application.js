@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
@@ -46,10 +45,7 @@ $(document).ready(function(){
     }
   ]
   });
-});
 
-
-$(document).ready(function(){
   $('.movie-slider-auto').slick({
     centerHeight: '100px',
     centerPadding: '20px',
@@ -81,4 +77,13 @@ $(document).ready(function(){
     }
   ]
   });
+
+  $('.navbar-brand').on('click', function(){
+    window.location.href = "/movies";
+  });
+
+  $('.home-button').on('click', function(){
+    window.location.href = "/movies";
+  });
+
 });
