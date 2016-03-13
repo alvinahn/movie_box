@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
         @movies = Movie.order(release_date: :desc)
       end
     else
-      @movies = Movie.all
+      @movies = Movie.order(title: :asc)
     end
   end
 
