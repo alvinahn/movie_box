@@ -13,6 +13,14 @@
       <div class="movie-duration">
         <%= min_to_hr(movie.runtime_in_minutes) %>
       </div>
+      <div class="movie-average">
+        <% if movie.reviews.any? %>
+          <%= (movie.review_average).times.collect{'★'}.join(' ') %> 
+          <span class="movie-no-review"><%= (10 - movie.review_average).times.collect{'★'}.join(' ') %></span>
+        <% else %>
+          <span class="movie-no-review"><%= 10.times.collect{'★'}.join(' ') %></span>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -45,9 +53,14 @@
           <hr>
 
           <h4>Reviews</h4>
-          <% if movie.reviews.any? %>
-            <p>Review Average: <%= movie.review_average %>/10</p>
-          <% end %>
+            <div class="movie-average">
+              <% if movie.reviews.any? %>
+                <%= (movie.review_average).times.collect{'★'}.join(' ') %> 
+                <span class="movie-no-review"><%= (10 - movie.review_average).times.collect{'★'}.join(' ') %></span>
+              <% else %>
+                <span class="movie-no-review"><%= 10.times.collect{'★'}.join(' ') %></span>
+              <% end %>
+            </div>
           <% if current_user %>
             <% movie.reviews.each do |review| %>
               <blockquote class="movie-review">
@@ -115,6 +128,14 @@
       <div class="movie-duration">
         <%= min_to_hr(movie.runtime_in_minutes) %>
       </div>
+      <div class="movie-average">
+        <% if movie.reviews.any? %>
+          <%= (movie.review_average).times.collect{'★'}.join(' ') %> 
+          <span class="movie-no-review"><%= (10 - movie.review_average).times.collect{'★'}.join(' ') %></span>
+        <% else %>
+          <span class="movie-no-review"><%= 10.times.collect{'★'}.join(' ') %></span>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -147,9 +168,14 @@
           <hr>
 
           <h4>Reviews</h4>
-          <% if movie.reviews.any? %>
-            <p>Review Average: <%= movie.review_average %>/10</p>
-          <% end %>
+          <div class="movie-average">
+            <% if movie.reviews.any? %>
+              <%= (movie.review_average).times.collect{'★'}.join(' ') %> 
+              <span class="movie-no-review"><%= (10 - movie.review_average).times.collect{'★'}.join(' ') %></span>
+            <% else %>
+              <span class="movie-no-review"><%= 10.times.collect{'★'}.join(' ') %></span>
+            <% end %>
+          </div>
           <% if current_user %>
             <% movie.reviews.each do |review| %>
               <blockquote class="movie-review">

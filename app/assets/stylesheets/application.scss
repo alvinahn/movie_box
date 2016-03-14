@@ -17,6 +17,29 @@
 
 $gray: #797474;
 
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+
 .navbar-form {
   display: inline-block;
   float: left;
@@ -167,4 +190,17 @@ $gray: #797474;
     width: 16px;
     height: 16px;
     background: url('star.png') 0 -16px;
+}
+
+.movie-average {
+  font-size: 9px;
+  margin-left: 15px;
+  color: yellow;
+  letter-spacing: 3px;
+  font-weight: 100;
+  font-family: 'Poiret One', cursive;
+}
+
+.movie-no-review {
+  color: white;
 }
