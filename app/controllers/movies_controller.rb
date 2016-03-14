@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
         @movies = Movie.order(release_date: :desc)
       end
     else
-      @movies = Movie.order(title: :asc)
+      @movies = Movie.where("release_date <= ?", (Time.now.ago(1.year)))
     end
   end
 
