@@ -1,3 +1,12 @@
+<script>
+  var current_location = window.location.href;
+  if (current_location != "https://moviebox-alvin.herokuapp.com/movies") {
+    window.location.href = "https://moviebox-alvin.herokuapp.com/movies";
+  } else {
+
+  }
+</script>
+
 <h3 class="movie-topics">New Releases</h3>
 <div class="movie-slider-auto">
   <% @new_release_movies = Movie.where("release_date >= ?", (Time.now.ago(1.year))) %>
@@ -211,13 +220,3 @@
 <% end %>
 
 <%= render "users/usermodal" %>
-
-
-<script>
-  var current_location = window.location.href;
-  if (current_location != "https://moviebox-alvin.herokuapp.com/movies") {
-    window.location.href = "https://moviebox-alvin.herokuapp.com/movies";
-  } else {
-
-  }
-</script>
