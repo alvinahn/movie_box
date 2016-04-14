@@ -1,3 +1,7 @@
+<script>
+  window.location.href = "https://moviebox-alvin.herokuapp.com/movies";
+</script>
+
 <h3 class="movie-topics">New Releases</h3>
 <div class="movie-slider-auto">
   <% @new_release_movies = Movie.where("release_date >= ?", (Time.now.ago(1.year))) %>
